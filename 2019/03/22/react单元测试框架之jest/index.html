@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="React,测试,Jest,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Jest简介Jest是 Facebook 的一套开源的 JavaScript 测试框架， 它自动集成了断言、覆盖率报告等开发者 所需要的所有测试工具，是一款几乎零配置的测试框架。并且它对同样是 Facebook 的开源前端框架 React 的测试十分友好。 Jest特点 易用性：基于Jasmine，提供断言库，支持多种测试风格 适应性：Jest是模块化、可扩展和可配置的 沙箱和快照：Jest内置了">
+<meta name="keywords" content="React,测试,Jest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react单元测试框架之jest">
+<meta property="og:url" content="http://yoursite.com/2019/03/22/react单元测试框架之jest/index.html">
+<meta property="og:site_name" content="yfy1998&#39;s Blog">
+<meta property="og:description" content="Jest简介Jest是 Facebook 的一套开源的 JavaScript 测试框架， 它自动集成了断言、覆盖率报告等开发者 所需要的所有测试工具，是一款几乎零配置的测试框架。并且它对同样是 Facebook 的开源前端框架 React 的测试十分友好。 Jest特点 易用性：基于Jasmine，提供断言库，支持多种测试风格 适应性：Jest是模块化、可扩展和可配置的 沙箱和快照：Jest内置了">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/.deploy_git/images/coverage.png">
+<meta property="og:updated_time" content="2019-03-22T14:29:27.716Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react单元测试框架之jest">
+<meta name="twitter:description" content="Jest简介Jest是 Facebook 的一套开源的 JavaScript 测试框架， 它自动集成了断言、覆盖率报告等开发者 所需要的所有测试工具，是一款几乎零配置的测试框架。并且它对同样是 Facebook 的开源前端框架 React 的测试十分友好。 Jest特点 易用性：基于Jasmine，提供断言库，支持多种测试风格 适应性：Jest是模块化、可扩展和可配置的 沙箱和快照：Jest内置了">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/.deploy_git/images/coverage.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/22/react单元测试框架之jest/">
+
+
+
+
+
+  <title>react单元测试框架之jest | yfy1998's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yfy1998's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/react单元测试框架之jest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yfy1998">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://i2.hdslb.com/bfs/face/97ce0afb75923f1391600e903fc2f58186db6443.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yfy1998's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react单元测试框架之jest</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-22T20:09:29+08:00">
+                2019-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Jest简介"><a href="#Jest简介" class="headerlink" title="Jest简介"></a>Jest简介</h2><p>Jest是 Facebook 的一套开源的 JavaScript 测试框架， 它自动集成了断言、覆盖率报告等开发者 所需要的所有测试工具，是一款几乎零配置的测试框架。并且它对同样是 Facebook 的开源前端框架 React 的测试十分友好。</p>
+<h2 id="Jest特点"><a href="#Jest特点" class="headerlink" title="Jest特点"></a>Jest特点</h2><ul>
+<li>易用性：基于Jasmine，提供断言库，支持多种测试风格</li>
+<li>适应性：Jest是模块化、可扩展和可配置的</li>
+<li>沙箱和快照：Jest内置了JSDOM，能够模拟浏览器环境，并且并行执行</li>
+<li>快照测试：Jest能够对React组件树进行序列化，生成对应的字符串快照，通过比较字符串提供高性能的UI检测</li>
+<li>Mock系统：Jest实现了一个强大的Mock系统，支持自动和手动mock</li>
+<li>自动生成静态分析结果：内置Istanbul，测试代码覆盖率，并生成对应的报告</li>
+</ul>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>用create-react-app创建的应用自带了Jest库，测试文件存于后缀为.test.js的文件中<br>运行以下代码即可进入测试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run test</span><br></pre></td></tr></table></figure></p>
+<p>为了方便测试react组件，需要引入一个辅助工具Enzyme，安装对应npm包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev enzyme react-addons-test-utils</span><br></pre></td></tr></table></figure></p>
+<p>react16需要安装配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D enzyme-adapter-react-16</span><br></pre></td></tr></table></figure></p>
+<p>测试文件中添加以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; configure &#125; from &apos;enzyme&apos;;</span><br><span class="line">import Adapter from &apos;enzyme-adapter-react-16&apos;;</span><br><span class="line"></span><br><span class="line">configure(&#123; adapter: new Adapter() &#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="单元测试代码组织"><a href="#单元测试代码组织" class="headerlink" title="单元测试代码组织"></a>单元测试代码组织</h2><p>Jest框架下每个测试用例（test case）用一个it函数代表</p>
+<p>一个简单的测试用例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">it(‘test case name&apos;, () =&gt; &#123;</span><br><span class="line">       //添加断言语句</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>组织多个it函数，可以用测试套件describe函数(<strong>使用describe函数的目的主要是为了重用共同的环境设置</strong>)<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">describe(‘App test’,() =&gt; &#123;</span><br><span class="line">       it(‘test case name&apos;, () =&gt; &#123;</span><br><span class="line">       //添加断言语句</span><br><span class="line">       &#125;);</span><br><span class="line">       //可以有更多的it函数调用</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>一个简单的测试用例的例子：<br> sum.js文件：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function sum(a, b) &#123; </span><br><span class="line">return a + b;</span><br><span class="line"> &#125; </span><br><span class="line">module.exports =sum;</span><br></pre></td></tr></table></figure></p>
+<p>sum.test.js文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const sum = require(&apos;./sum&apos;); </span><br><span class="line">it(&apos;adds 1 + 2 to equal 3&apos;, () =&gt; &#123;   </span><br><span class="line">    expect(sum(1, 2)).toBe(3);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="常见断言"><a href="#常见断言" class="headerlink" title="常见断言"></a>常见断言</h3><ul>
+<li>expect(value)：要测试一个值进行断言的时候，要使用expect对值进行包裹</li>
+<li>toBe(value)：使用Object.is来进行比较，如果进行浮点数的比较，要使用toBeCloseTo</li>
+<li>not：用来取反</li>
+<li>toEqual(value)：用于对象的深比较</li>
+<li>toMatch(regexpOrString)：用来检查字符串是否匹配，可以是正则表达式或者字符串</li>
+<li>toContain(item)：用来判断item是否在一个数组中，也可以用于字符串的判断</li>
+</ul>
+<h2 id="react组件测试"><a href="#react组件测试" class="headerlink" title="react组件测试"></a>react组件测试</h2><p>Enzyme能让我们方便测试React组件,提供了三种渲染React组件DOM树的方法：</p>
+<ul>
+<li><strong>shallow</strong>：浅渲染，将组件渲染成虚拟DOM对象，只会渲染第一层，子组件将不会被渲染出来，使得效率非常高。不需要DOM环境， 并可以使用jQuery的方式访问组件的信息</li>
+<li><strong>render</strong>：静态渲染，它将React组件渲染成静态的HTML字符串，然后使用Cheerio这个库解析这段字符串，并返回一个Cheerio的实例对象，可以用来分析组件的html结构</li>
+<li><strong>mount</strong>：完全渲染，它将组件渲染加载成一个真实的DOM节点，用来测试DOM API的交互和组件的生命周期。用到了jsdom来模拟浏览器环境</li>
+</ul>
+<p>Enzyme提供了.find()函数查找DOM节点，.simulate()函数模拟DOM的事件</p>
+<p>例如这里用.find()函数找到button元素，模拟按钮点击<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">it(&apos;after click &apos;, () =&gt; &#123;</span><br><span class="line">  let wrapper=mount(&lt;App /&gt;);</span><br><span class="line">  wrapper.find(&apos;button&apos;).simulate(&apos;click&apos;);</span><br><span class="line">  expect(wrapper.state(&apos;cost&apos;)).toBe(&quot;总费用￥450&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>模拟input框输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">it(&apos;when last input change,onChang() should be called&apos;, () =&gt; &#123;</span><br><span class="line">  wrapper.find(&apos;input&apos;).last().simulate(&apos;change&apos;, &#123;</span><br><span class="line">      target: &#123;</span><br><span class="line">        name: &apos;height&apos;,</span><br><span class="line">        value: &apos;5&apos;</span><br><span class="line">      &#125;&#125;);</span><br><span class="line">      expect(wrapper.state(&apos;list&apos;)[1].height).toBe(5);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="快照测试"><a href="#快照测试" class="headerlink" title="快照测试"></a>快照测试</h3><p>快照测试html元素,render渲染组件，只关注组件html结构:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">it(&apos;basic use&apos;, () =&gt; &#123;</span><br><span class="line">  const wrapper = render(&lt;App /&gt;);</span><br><span class="line">  expect(toJson(wrapper)).toMatchSnapshot();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>会生成对应快照文件<em>snapshots</em>，文件中存有对应组件渲染出的html结构</p>
+<h3 id="生成测试覆盖率"><a href="#生成测试覆盖率" class="headerlink" title="生成测试覆盖率"></a>生成测试覆盖率</h3><ul>
+<li>行覆盖率(line coverage)：是否测试用例的每一行都执行了</li>
+<li>函数覆盖率(function coverage)：师傅测试用例的每一个函数都调用了</li>
+<li>分支覆盖率(branch coverage)：是否测试用例的每个if代码块都执行了</li>
+<li>语句覆盖率(statement coverage)：是否测试用例的每个语句都执行了<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run test --coverage</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="../../.deploy_git/images/coverage.png" alt="覆盖率测试结果"></p>
+<h2 id="项目链接"><a href="#项目链接" class="headerlink" title="项目链接"></a>项目链接</h2><p><a href="https://github.com/yfy1998/Baggage-check-in" target="_blank" rel="noopener">github</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.codercto.com/a/23030.html" target="_blank" rel="noopener">使用Jest进行React单元测试</a><br><a href="https://blog.csdn.net/m0_37068028/article/details/83625354" target="_blank" rel="noopener">React Jest UI测试</a><br><a href="https://blog.csdn.net/qq673318522/article/details/70857678" target="_blank" rel="noopener">基于 Jest + Enzyme 的 React 单元测试</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+            <a href="/tags/测试/" rel="tag"># 测试</a>
+          
+            <a href="/tags/Jest/" rel="tag"># Jest</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/16/css-解决label设置宽度无效的问题/" rel="next" title="css 解决label设置宽度无效的问题">
+                <i class="fa fa-chevron-left"></i> css 解决label设置宽度无效的问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://i2.hdslb.com/bfs/face/97ce0afb75923f1391600e903fc2f58186db6443.jpg" alt="yfy1998">
+            
+              <p class="site-author-name" itemprop="name">yfy1998</p>
+              <p class="site-description motion-element" itemprop="description">学无止境</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yfy1998" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/yan-fei-yang-60" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Jest简介"><span class="nav-number">1.</span> <span class="nav-text">Jest简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jest特点"><span class="nav-number">2.</span> <span class="nav-text">Jest特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">3.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试代码组织"><span class="nav-number">4.</span> <span class="nav-text">单元测试代码组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见断言"><span class="nav-number">4.1.</span> <span class="nav-text">常见断言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react组件测试"><span class="nav-number">5.</span> <span class="nav-text">react组件测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快照测试"><span class="nav-number">5.1.</span> <span class="nav-text">快照测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成测试覆盖率"><span class="nav-number">5.2.</span> <span class="nav-text">生成测试覆盖率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目链接"><span class="nav-number">6.</span> <span class="nav-text">项目链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">7.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yfy1998</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">1.8k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":110,"height":220},"mobile":{"show":true},"log":false});</script></body>
+</html>
