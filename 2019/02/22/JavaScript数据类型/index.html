@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。">
+<meta name="description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。 null与undefined区别很小，因为">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript数据类型">
 <meta property="og:url" content="http://yoursite.com/2019/02/22/JavaScript数据类型/index.html">
 <meta property="og:site_name" content="yfy1998&#39;s Blog">
-<meta property="og:description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。">
+<meta property="og:description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。 null与undefined区别很小，因为">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-22T06:31:50.372Z">
+<meta property="og:updated_time" content="2019-04-01T13:10:26.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript数据类型">
-<meta name="twitter:description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。">
+<meta name="twitter:description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。 null与undefined区别很小，因为">
 
 
 
@@ -336,7 +336,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  96
+                  171
                 </span>
               
 
@@ -374,6 +374,9 @@
 
       
         <p>数值（number）：整数和小数（比如1和3.14）<br>字符串（string）：文本（比如Hello World）。<br>布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）<br>undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值<br>null：表示空值，即此处的值为空。<br>对象（object）：各种值组成的集合。</p>
+<p>null与undefined区别很小，因为历史原因才会出现这2种类型，甚至直接用===判断都会返回true<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">null === undefined // true</span><br></pre></td></tr></table></figure></p>
+<p>null与undefined的微小区别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Number(null) //0</span><br><span class="line">Number(undefined) //NaN</span><br></pre></td></tr></table></figure></p>
+<p>具体区别可以看阮一峰老师的[null与undefined的区别]{<a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html}" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html}</a></p>
 
       
     </div>
@@ -486,7 +489,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -575,7 +578,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">1.8k</span>
+    <span title="Site words total count">3k</span>
   
 </div>
 
