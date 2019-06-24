@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript,">
+  <meta name="keywords" content="JavaScript,深浅拷贝,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。 null与undefined区别很小，因为">
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="深浅拷贝我们把复制引用的拷贝方法称之为浅拷贝，与之对应的就是深拷贝，深拷贝就是指完全的拷贝一个对象，即使嵌套了对象，两者也相互分离，修改一个对象的属性，也不会影响另一个。 数据的浅拷贝我们可以利用数组的slice、concat方法返回一个新数组的特性来实现浅拷贝。比如用concat方法12345678var arr = [&amp;apos;old&amp;apos;, 1, true, null, undefi">
+<meta name="keywords" content="JavaScript,深浅拷贝">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript数据类型">
-<meta property="og:url" content="http://yoursite.com/2019/02/22/JavaScript数据类型/index.html">
+<meta property="og:title" content="JavaScript之深浅拷贝的实现">
+<meta property="og:url" content="http://yoursite.com/2019/04/07/JavaScript之深浅拷贝的实现/index.html">
 <meta property="og:site_name" content="yfy1998&#39;s Blog">
-<meta property="og:description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。 null与undefined区别很小，因为">
+<meta property="og:description" content="深浅拷贝我们把复制引用的拷贝方法称之为浅拷贝，与之对应的就是深拷贝，深拷贝就是指完全的拷贝一个对象，即使嵌套了对象，两者也相互分离，修改一个对象的属性，也不会影响另一个。 数据的浅拷贝我们可以利用数组的slice、concat方法返回一个新数组的特性来实现浅拷贝。比如用concat方法12345678var arr = [&amp;apos;old&amp;apos;, 1, true, null, undefi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-01T13:10:26.883Z">
+<meta property="og:updated_time" content="2019-04-07T05:32:04.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript数据类型">
-<meta name="twitter:description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。 null与undefined区别很小，因为">
+<meta name="twitter:title" content="JavaScript之深浅拷贝的实现">
+<meta name="twitter:description" content="深浅拷贝我们把复制引用的拷贝方法称之为浅拷贝，与之对应的就是深拷贝，深拷贝就是指完全的拷贝一个对象，即使嵌套了对象，两者也相互分离，修改一个对象的属性，也不会影响另一个。 数据的浅拷贝我们可以利用数组的slice、concat方法返回一个新数组的特性来实现浅拷贝。比如用concat方法12345678var arr = [&amp;apos;old&amp;apos;, 1, true, null, undefi">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/22/JavaScript数据类型/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/07/JavaScript之深浅拷贝的实现/">
 
 
 
 
 
-  <title>JavaScript数据类型 | yfy1998's Blog</title>
+  <title>JavaScript之深浅拷贝的实现 | yfy1998's Blog</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/JavaScript数据类型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/07/JavaScript之深浅拷贝的实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yfy1998">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript数据类型</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript之深浅拷贝的实现</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-22T14:30:49+08:00">
-                2019-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-07T12:00:29+08:00">
+                2019-04-07
               </time>
             
 
@@ -336,7 +336,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  171
+                  574
                 </span>
               
 
@@ -352,7 +352,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -373,10 +373,14 @@
       
 
       
-        <p>数值（number）：整数和小数（比如1和3.14）<br>字符串（string）：文本（比如Hello World）。<br>布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）<br>undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值<br>null：表示空值，即此处的值为空。<br>对象（object）：各种值组成的集合。</p>
-<p>null与undefined区别很小，因为历史原因才会出现这2种类型，甚至直接用===判断都会返回true<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">null === undefined // true</span><br></pre></td></tr></table></figure></p>
-<p>null与undefined的微小区别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Number(null) //0</span><br><span class="line">Number(undefined) //NaN</span><br></pre></td></tr></table></figure></p>
-<p>具体区别可以看阮一峰老师的[null与undefined的区别]{<a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html}" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html}</a></p>
+        <h2 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h2><p>我们把复制引用的拷贝方法称之为浅拷贝，与之对应的就是深拷贝，深拷贝就是指完全的拷贝一个对象，即使嵌套了对象，两者也相互分离，修改一个对象的属性，也不会影响另一个。</p>
+<h2 id="数据的浅拷贝"><a href="#数据的浅拷贝" class="headerlink" title="数据的浅拷贝"></a>数据的浅拷贝</h2><p>我们可以利用数组的slice、concat方法返回一个新数组的特性来实现浅拷贝。<br>比如用concat方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var arr = [&apos;old&apos;, 1, true, null, undefined];</span><br><span class="line"></span><br><span class="line">var new_arr = arr.concat();</span><br><span class="line"></span><br><span class="line">new_arr[0] = &apos;new&apos;;</span><br><span class="line"></span><br><span class="line">console.log(arr) // [&quot;old&quot;, 1, true, null, undefined]</span><br><span class="line">console.log(new_arr) // [&quot;new&quot;, 1, true, null, undefined]</span><br></pre></td></tr></table></figure></p>
+<p>如果数组嵌套了对象或者数组的话<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var arr = [&#123;old: &apos;old&apos;&#125;, [&apos;old&apos;]];</span><br><span class="line"></span><br><span class="line">var new_arr = arr.concat();</span><br><span class="line"></span><br><span class="line">arr[0].old = &apos;new&apos;;</span><br><span class="line">arr[1][0] = &apos;new&apos;;</span><br><span class="line"></span><br><span class="line">console.log(arr) // [&#123;old: &apos;new&apos;&#125;, [&apos;new&apos;]]</span><br><span class="line">console.log(new_arr) // [&#123;old: &apos;new&apos;&#125;, [&apos;new&apos;]]</span><br></pre></td></tr></table></figure></p>
+<p>可以看到concat方法仅仅拷贝了对象的引用，只是浅拷贝。<br>用slice方法这样写<br><code>var new_arr = arr.slice();</code></p>
+<h2 id="深拷贝的简便方法"><a href="#深拷贝的简便方法" class="headerlink" title="深拷贝的简便方法"></a>深拷贝的简便方法</h2><p><code>JSON.parse(JSON.stringify(obj))</code>是深拷贝简单粗暴的一个方法，但是它无法拷贝函数<br><strong>JSON.stringify</strong>方法用于将一个值转为 JSON 字符串。该字符串符合 JSON 格式，并且可以被<strong>JSON.parse</strong>方法还原。<br>如果对象的属性是undefined、函数或 XML 对象，该属性会被JSON.stringify过滤。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  a: undefined,</span><br><span class="line">  b: function () &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">JSON.stringify(obj) // &quot;&#123;&#125;&quot;</span><br></pre></td></tr></table></figure></p>
+<p>如果数组的成员是undefined、函数或 XML 对象，则这些值被转成null。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [undefined, function () &#123;&#125;];</span><br><span class="line">JSON.stringify(arr) // &quot;[null,null]&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="浅拷贝的实现"><a href="#浅拷贝的实现" class="headerlink" title="浅拷贝的实现"></a>浅拷贝的实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var shallowCopy = function(obj) &#123;</span><br><span class="line">    // 只拷贝对象</span><br><span class="line">    if (typeof obj !== &apos;object&apos;) return;</span><br><span class="line">    // 根据obj的类型判断是新建一个数组还是对象</span><br><span class="line">    var newObj = obj instanceof Array ? [] : &#123;&#125;;</span><br><span class="line">    // 遍历obj，并且判断是obj的属性才拷贝</span><br><span class="line">    for (var key in obj) &#123;</span><br><span class="line">        if (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">            newObj[key] = obj[key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return newObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="深拷贝的实现"><a href="#深拷贝的实现" class="headerlink" title="深拷贝的实现"></a>深拷贝的实现</h2><p>我们在拷贝的时候判断一下属性值的类型，如果是对象，我们递归调用深拷贝函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var deepCopy = function(obj) &#123;</span><br><span class="line">    if (typeof obj !== &apos;object&apos;) return;</span><br><span class="line">    var newObj = obj instanceof Array ? [] : &#123;&#125;;</span><br><span class="line">    for (var key in obj) &#123;</span><br><span class="line">        if (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">            newObj[key] = typeof obj[key] === &apos;object&apos; ? deepCopy(obj[key]) : obj[key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return newObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -396,6 +400,8 @@
           
             <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
+            <a href="/tags/深浅拷贝/" rel="tag"># 深浅拷贝</a>
+          
         </div>
       
 
@@ -407,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/22/初识JavaScript/" rel="next" title="初识JavaScript">
-                <i class="fa fa-chevron-left"></i> 初识JavaScript
+              <a href="/2019/04/01/JavaScript之原型到原型链/" rel="next" title="JavaScript之原型到原型链">
+                <i class="fa fa-chevron-left"></i> JavaScript之原型到原型链
               </a>
             
           </div>
@@ -417,8 +423,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/16/css-解决label设置宽度无效的问题/" rel="prev" title="css 解决label设置宽度无效的问题">
-                css 解决label设置宽度无效的问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/24/ES6之let和const/" rel="prev" title="ES6之let和const">
+                ES6之let和const <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -471,8 +477,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -550,6 +565,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#深浅拷贝"><span class="nav-number">1.</span> <span class="nav-text">深浅拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的浅拷贝"><span class="nav-number">2.</span> <span class="nav-text">数据的浅拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深拷贝的简便方法"><span class="nav-number">3.</span> <span class="nav-text">深拷贝的简便方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浅拷贝的实现"><span class="nav-number">4.</span> <span class="nav-text">浅拷贝的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深拷贝的实现"><span class="nav-number">5.</span> <span class="nav-text">深拷贝的实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

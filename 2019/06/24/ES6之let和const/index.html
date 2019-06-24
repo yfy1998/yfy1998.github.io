@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript,">
+  <meta name="keywords" content="ES6,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。 null与undefined区别很小，因为">
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="letES6新增了let命令，用于声明变量。使用类似于var，但是let命令会形成块级作用域。 特点1.不存在变量提升1234567// var 的情况console.log(foo); // 输出undefinedvar foo = 2;// let 的情况console.log(bar); // 报错ReferenceErrorlet bar = 2; 2.暂时性死区块级作用域内使用let声明">
+<meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript数据类型">
-<meta property="og:url" content="http://yoursite.com/2019/02/22/JavaScript数据类型/index.html">
+<meta property="og:title" content="ES6之let和const">
+<meta property="og:url" content="http://yoursite.com/2019/06/24/ES6之let和const/index.html">
 <meta property="og:site_name" content="yfy1998&#39;s Blog">
-<meta property="og:description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。 null与undefined区别很小，因为">
+<meta property="og:description" content="letES6新增了let命令，用于声明变量。使用类似于var，但是let命令会形成块级作用域。 特点1.不存在变量提升1234567// var 的情况console.log(foo); // 输出undefinedvar foo = 2;// let 的情况console.log(bar); // 报错ReferenceErrorlet bar = 2; 2.暂时性死区块级作用域内使用let声明">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-01T13:10:26.883Z">
+<meta property="og:updated_time" content="2019-06-24T09:17:40.375Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript数据类型">
-<meta name="twitter:description" content="数值（number）：整数和小数（比如1和3.14）字符串（string）：文本（比如Hello World）。布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值null：表示空值，即此处的值为空。对象（object）：各种值组成的集合。 null与undefined区别很小，因为">
+<meta name="twitter:title" content="ES6之let和const">
+<meta name="twitter:description" content="letES6新增了let命令，用于声明变量。使用类似于var，但是let命令会形成块级作用域。 特点1.不存在变量提升1234567// var 的情况console.log(foo); // 输出undefinedvar foo = 2;// let 的情况console.log(bar); // 报错ReferenceErrorlet bar = 2; 2.暂时性死区块级作用域内使用let声明">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/22/JavaScript数据类型/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/24/ES6之let和const/">
 
 
 
 
 
-  <title>JavaScript数据类型 | yfy1998's Blog</title>
+  <title>ES6之let和const | yfy1998's Blog</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/JavaScript数据类型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/ES6之let和const/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yfy1998">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript数据类型</h1>
+          <h1 class="post-title" itemprop="name headline">ES6之let和const</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-22T14:30:49+08:00">
-                2019-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-24T16:35:47+08:00">
+                2019-06-24
               </time>
             
 
@@ -336,7 +336,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  171
+                  491
                 </span>
               
 
@@ -373,10 +373,15 @@
       
 
       
-        <p>数值（number）：整数和小数（比如1和3.14）<br>字符串（string）：文本（比如Hello World）。<br>布尔值（boolean）：表示真伪的两个特殊值，即true（真）和false（假）<br>undefined：表示“未定义”或不存在，即由于目前没有定义，所以此处暂时没有任何值<br>null：表示空值，即此处的值为空。<br>对象（object）：各种值组成的集合。</p>
-<p>null与undefined区别很小，因为历史原因才会出现这2种类型，甚至直接用===判断都会返回true<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">null === undefined // true</span><br></pre></td></tr></table></figure></p>
-<p>null与undefined的微小区别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Number(null) //0</span><br><span class="line">Number(undefined) //NaN</span><br></pre></td></tr></table></figure></p>
-<p>具体区别可以看阮一峰老师的[null与undefined的区别]{<a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html}" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html}</a></p>
+        <h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>ES6新增了let命令，用于声明变量。使用类似于var，但是let命令会形成块级作用域。</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>1.不存在变量提升<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// var 的情况</span><br><span class="line">console.log(foo); // 输出undefined</span><br><span class="line">var foo = 2;</span><br><span class="line"></span><br><span class="line">// let 的情况</span><br><span class="line">console.log(bar); // 报错ReferenceError</span><br><span class="line">let bar = 2;</span><br></pre></td></tr></table></figure></p>
+<p>2.暂时性死区<br>块级作用域内使用let声明的变量会被封锁在作用域内，不受外部影响，块级作用域内部无法访问外部作用域的同名变量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var tmp = 123;</span><br><span class="line"></span><br><span class="line">if (true) &#123;</span><br><span class="line">  tmp = &apos;abc&apos;; // ReferenceError</span><br><span class="line">  let tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，存在全局变量tmp，但是块级作用域内let又声明了一个局部变量tmp，导致后者绑定这个块级作用域，所以在let声明变量前，对tmp赋值会报错。</p>
+<p>在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if (true) &#123;</span><br><span class="line">  // TDZ开始</span><br><span class="line">  tmp = &apos;abc&apos;; // ReferenceError</span><br><span class="line">  console.log(tmp); // ReferenceError</span><br><span class="line"></span><br><span class="line">  let tmp; // TDZ结束</span><br><span class="line">  console.log(tmp); // undefined</span><br><span class="line"></span><br><span class="line">  tmp = 123;</span><br><span class="line">  console.log(tmp); // 123</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，在let命令声明变量tmp之前，都属于变量tmp的“死区”。</p>
+<p>3.不能重复声明<br>let不允许在相同作用域内重复声明同一变量。</p>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>const声明一个只读的常量。一旦声明，常量的值就不能改变。声明时必须初始化。<br>值不能改变的本质是变量的地址不能改变，如果是简单类型（数值、字符串、bool），地址存的就是值，等同于常量；如果是复杂类型（对象、数组），地址存的是引用对象的指针，也就是说不能改变指针的指向，但是对象内部可以改变。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const foo = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 为 foo 添加一个属性，可以成功</span><br><span class="line">foo.prop = 123;</span><br><span class="line">foo.prop // 123</span><br><span class="line"></span><br><span class="line">// 将 foo 指向另一个对象，就会报错</span><br><span class="line">foo = &#123;&#125;; // TypeError: &quot;foo&quot; is read-only</span><br></pre></td></tr></table></figure></p>
+<p>特点和let一样</p>
 
       
     </div>
@@ -394,7 +399,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
         </div>
       
@@ -407,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/22/初识JavaScript/" rel="next" title="初识JavaScript">
-                <i class="fa fa-chevron-left"></i> 初识JavaScript
+              <a href="/2019/04/07/JavaScript之深浅拷贝的实现/" rel="next" title="JavaScript之深浅拷贝的实现">
+                <i class="fa fa-chevron-left"></i> JavaScript之深浅拷贝的实现
               </a>
             
           </div>
@@ -416,10 +421,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/16/css-解决label设置宽度无效的问题/" rel="prev" title="css 解决label设置宽度无效的问题">
-                css 解决label设置宽度无效的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -471,8 +472,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -550,6 +560,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#let"><span class="nav-number">1.</span> <span class="nav-text">let</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const"><span class="nav-number">2.</span> <span class="nav-text">const</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
